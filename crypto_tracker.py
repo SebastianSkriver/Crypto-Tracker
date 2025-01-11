@@ -23,7 +23,7 @@ portfolio = {
 }
 
 # Define your target portfolio value
-TARGET_PORTFOLIO_VALUE = 10000  # Replace with your target value in USD
+TARGET_PORTFOLIO_VALUE = 50000  # Replace with your target value in USD
 
 # Email credentials
 EMAIL_FROM = "Stock.tracker.python@gmail.com"
