@@ -89,7 +89,7 @@ def main():
         logging.debug("Portfolio Value (USD): %s", total_value)
         for item in data:
             logging.debug(item)
-        log_to_excel(data, total_value)  # Pass total value to the log function
+        log_to_csv(data, total_value)  # Pass total value to the log function
     else:
         logging.error("Failed to fetch prices.")
 
