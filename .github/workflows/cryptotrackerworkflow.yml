@@ -2,7 +2,7 @@ name: Crypto Portfolio Tracker
 
 on:
   schedule:
-    - cron: "0 23 * * *"  # Runs every day at 11:00 PM UTC
+    - cron: "0 22 * * *"  # Runs every day at 11:00 PM UTC
   workflow_dispatch:  # Allows manual triggering of the workflow
 
 jobs:
