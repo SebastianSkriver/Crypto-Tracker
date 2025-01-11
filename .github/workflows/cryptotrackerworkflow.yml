@@ -2,7 +2,7 @@ name: Crypto Portfolio Tracker
 
 on:
   schedule:
-    - cron: "*/17 * * * *"  # Runs every 10 minute
+    - cron: "0 23 * * *"
   workflow_dispatch:  # Allows manual triggering of the workflow
 
 jobs:
