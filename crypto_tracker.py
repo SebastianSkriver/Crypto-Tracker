@@ -28,7 +28,7 @@ TARGET_PORTFOLIO_VALUE = 500  # Replace with your target value in USD
 # Email credentials
 EMAIL_FROM = "Stock.tracker.python@gmail.com"
 EMAIL_PASSWORD = "bdib awge zrjw dhnn"
-EMAIL_TO = "bomskriver@gmail.com"
+EMAIL_TO = "stock.tracker.python@gmail.com"
 
 
 # Fetch prices from CoinGecko
