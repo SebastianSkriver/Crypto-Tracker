@@ -51,18 +51,20 @@ def calculate_portfolio_value(prices, portfolio):
     return total_value, data
 
 
-# Log data to Excel
-def log_to_excel(data, total_value):
+# Log data to CSV
+def log_to_csv(data, total_value):
     df = pd.DataFrame(data)
     df["Timestamp"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")  # Add timestamp
     df["Total Portfolio Value (USD)"] = total_value  # Add total portfolio value for the day
-    file_name = os.path.join(script_dir, "crypto_portfolio.xlsx")
-    
-    # Verify if the file exists
+    file_name = os.path.join(script_dir, "crypto_portfolio.csv")  # Save as CSV in the same directory
+
+    # Check if the file exists
     if os.path.exists(file_name):
         logging.debug("File exists, attempting to append data.")
         try:
-            existing_data = pd.read_excel(file_name)
+            # Read the existing CSV file
+            existing_data = pd.read_csv(file_name)
+            # Concatenate the new data with the existing data
             df = pd.concat([existing_data, df], ignore_index=True)
         except Exception as e:
             logging.error("Error reading existing file: %s", e)
@@ -70,9 +72,9 @@ def log_to_excel(data, total_value):
     else:
         logging.debug("File does not exist, creating a new one.")
 
-    # Save the DataFrame to the Excel file
+    # Save the DataFrame to the CSV file
     try:
-        df.to_excel(file_name, index=False)
+        df.to_csv(file_name, index=False)
         logging.info("Portfolio logged to %s", file_name)
     except Exception as e:
         logging.error("Error saving file: %s", e)
