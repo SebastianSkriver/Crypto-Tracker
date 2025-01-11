@@ -56,8 +56,8 @@ def log_to_excel(data, total_value):
     df = pd.DataFrame(data)
     df["Timestamp"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")  # Add timestamp
     df["Total Portfolio Value (USD)"] = total_value  # Add total portfolio value for the day
-    file_name = r"C:\Users\sebas\PycharmProjects\Automation\crypto_portfolio.xlsx"
-
+    file_name = os.path.join(script_dir, "crypto_portfolio.xlsx")
+    
     # Verify if the file exists
     if os.path.exists(file_name):
         logging.debug("File exists, attempting to append data.")
