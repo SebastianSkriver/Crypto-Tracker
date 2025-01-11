@@ -1,3 +1,6 @@
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 import requests
 import pandas as pd
 from datetime import datetime
@@ -18,6 +21,14 @@ portfolio = {
     "axelar": 14000,  # Replace with your holdings
     "any-inu": 1200000000,
 }
+
+# Define your target portfolio value
+TARGET_PORTFOLIO_VALUE = 10000  # Replace with your target value in USD
+
+# Email credentials
+EMAIL_FROM = "Stock.tracker.python@gmail.com"
+EMAIL_PASSWORD = "bdib awge zrjw dhnn"
+EMAIL_TO = "skriver.sebastian@gmail.com"
 
 
 # Fetch prices from CoinGecko
@@ -80,6 +91,28 @@ def log_to_csv(data, total_value):
         logging.error("Error saving file: %s", e)
 
 
+# Send email notification
+def send_email(subject, body):
+    try:
+        # Set up the email
+        msg = MIMEMultipart()
+        msg["From"] = EMAIL_FROM
+        msg["To"] = EMAIL_TO
+        msg["Subject"] = subject
+
+        # Add the email body
+        msg.attach(MIMEText(body, "plain"))
+
+        # Connect to the SMTP server and send the email
+        with smtplib.SMTP("smtp.gmail.com", 587) as server:
+            server.starttls()  # Upgrade the connection to secure
+            server.login(EMAIL_FROM, EMAIL_PASSWORD)
+            server.send_message(msg)
+
+        logging.info("Email sent successfully to %s", EMAIL_TO)
+    except Exception as e:
+        logging.error("Error sending email: %s", e)
+
 # Main program
 def main():
     coins = list(portfolio.keys())
@@ -90,9 +123,14 @@ def main():
         for item in data:
             logging.debug(item)
         log_to_csv(data, total_value)  # Pass total value to the log function
+
+        # Check if the portfolio value exceeds the target
+        if total_value >= TARGET_PORTFOLIO_VALUE:
+            subject = "Crypto Portfolio Alert: Target Reached!"
+            body = f"Your portfolio value has reached ${total_value:.2f}, which is above your target of ${TARGET_PORTFOLIO_VALUE:.2f}. Consider selling your holdings."
+            send_email(subject, body)
     else:
         logging.error("Failed to fetch prices.")
-
 
 if __name__ == "__main__":
     main()
