@@ -18,17 +18,17 @@ logging.debug("Current working directory: %s", os.getcwd())  # To verify if it's
 
 # Define your portfolio
 portfolio = {
-    "axelar": 14000,  # Replace with your holdings
-    "any-inu": 1200000000,
+    "axelar": 140,  # Replace with your holdings
+    "any-inu": 12000000,
 }
 
 # Define your target portfolio value
-TARGET_PORTFOLIO_VALUE = 50000  # Replace with your target value in USD
+TARGET_PORTFOLIO_VALUE = 500  # Replace with your target value in USD
 
 # Email credentials
 EMAIL_FROM = "Stock.tracker.python@gmail.com"
 EMAIL_PASSWORD = "bdib awge zrjw dhnn"
-EMAIL_TO = "skriver.sebastian@gmail.com"
+EMAIL_TO = "bomskriver@gmail.com"
 
 
 # Fetch prices from CoinGecko
